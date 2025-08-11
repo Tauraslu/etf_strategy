@@ -49,6 +49,8 @@ The system supports extracting ETF historical data from a database, calculating 
    pip install pandas numpy sqlalchemy requests tqdm tushare
 
 
+---
+
 本项目实现了基于多因子分析与信息系数(IC)加权的 ETF 策略，涵盖数据抓取、因子计算、得分评估、调仓回测等完整流程。  
 项目支持从数据库中提取 ETF 历史数据、按行业分类计算得分，并根据调仓信号生成持仓方案。
 
@@ -100,53 +102,3 @@ The system supports extracting ETF historical data from a database, calculating 
 
 
 
-# ETF Strategy
-
-本项目实现了基于多因子分析与信息系数(IC)加权的 ETF 策略，涵盖数据抓取、因子计算、得分评估、调仓回测等完整流程。  
-项目支持从数据库中提取 ETF 历史数据、按行业分类计算得分，并根据调仓信号生成持仓方案。
-
----
-
-## 📂 文件说明
-
-### 核心因子与打分
-- **factor.py**  
-  定义并计算各类 ETF 策略因子（如动量、偏离度、高波赔率）。
-- **calculate_loss.py**  
-  依赖etf成分股行情计算亏损成分比例
-- **ic.py**  
-  计算各因子的 IC（信息系数），用于评估预测能力。
-- **etf_score.py**  
-  基于 IC 加权合成 ETF 综合得分。
-
-
-### 因子分析与验证
-- **analyze_score_distribution.py**  
-  分析因子得分的分布情况，辅助筛选有效因子及阈值。
-- **check_score.py**  
-  检查因子得分的有效性与稳定性。
-
-
-### 调仓与回测
-- **rebalance.py**  
-  根据综合得分和调仓规则生成持仓调整方案。
-
-### 数据获取与更新
-- **sql.py**  
-  数据库连接与 SQL 查询工具，用于获取 ETF 历史行情与成分数据。
-- **daily.py**  
-  从数据源抓取每日行情数据并更新到数据库。
-- **etf_daily.py**  
-  获取并存储所有 ETF 日线行情数据。
-- **sw_etf_daily.py**  
-  获取申万行业分类的 ETF 日线行情数据。
-- **worm.py**  
-  数据抓取调度脚本，可批量执行数据更新任务。
-
----
-
-## 使用方法
-
-1. **安装依赖**
-   ```bash
-   pip install pandas numpy sqlalchemy requests tqdm tushare
